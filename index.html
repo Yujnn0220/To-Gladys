@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffd1ff);
+position:relative;
+}
+
+.card{
+width:90%;
+max-width:380px;
+background:white;
+padding:30px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 10px 35px rgba(0,0,0,.25);
+animation:pop .7s;
+z-index:10;
+}
+
+@keyframes pop{
+from{
+transform:scale(.7);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+h1{
+color:#ff4f81;
+font-size:28px;
+margin-bottom:10px;
+}
+
+p{
+margin:15px 0;
+font-size:16px;
+color:#555;
+line-height:1.6;
+}
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:25px;
+position:relative;
+}
+
+button{
+padding:12px 28px;
+border:none;
+border-radius:30px;
+font-size:17px;
+cursor:pointer;
+transition:.3s;
+}
+
+#yes{
+background:#ff4f81;
+color:white;
+}
+
+#yes:hover{
+transform:scale(1.08);
+}
+
+#no{
+background:#ddd;
+position:relative;
+}
+
+#message{
+margin-top:25px;
+font-size:20px;
+font-weight:bold;
+color:#ff2d75;
+display:none;
+animation:fade .8s;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Floating Hearts */
+
+.heart{
+position:absolute;
+color:#ff4f81;
+animation:float linear infinite;
+opacity:.6;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh) scale(.5);
+opacity:0;
+}
+10%{
+opacity:1;
+}
+100%{
+transform:translateY(-120px) scale(1.3);
+opacity:0;
+}
+}
+
+/* Confetti Hearts */
+
+.confetti{
+position:absolute;
+font-size:22px;
+animation:fall 3s linear forwards;
+pointer-events:none;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px) rotate(0deg);
+opacity:1;
+}
+100%{
+transform:translateY(110vh) rotate(720deg);
+opacity:0;
+}
+}
+
+@media(max-width:480px){
+
+h1{
+font-size:24px;
+}
+
+button{
+padding:10px 22px;
+font-size:16px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>Hi Langga/Baby ❤️</h1>
+
+<p>
+
+I know sobrang tagal ko na dapat sinabi sayo to.But, i dont have the courage to ask you.
+
+You make my days brighter,
+my heart happier,
+and my life better.
+
+So today...
+
+Will you make me the happiest person
+and be my girlfriend? 🥺❤️
+
+</p>
+
+<div class="buttons">
+
+<button id="yes">YES </button>
+
+<button id="no">NO </button>
+
+</div>
+
+<div id="message">
+
+🎉 YAYYYYY!! ❤️<br><br>
+
+You just made me the happiest person alive! 🥹❤️<br><br>
+
+Goofy Gii officially unlocked! 😂💖<br>
+
+I promise to love you, annoy you,
+make you laugh,
+and stay beside you through everything. ❤️
+
+</div>
+
+</div>
+
+<script>
+
+// Floating Hearts
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(15+Math.random()*25)+"px";
+
+heart.style.animationDuration=(4+Math.random()*6)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),9000);
+
+}
+
+setInterval(createHeart,250);
+
+// YES BUTTON
+
+document.getElementById("yes").onclick=function(){
+
+document.getElementById("message").style.display="block";
+
+heartConfetti();
+
+}
+
+// HEART CONFETTI
+
+function heartConfetti(){
+
+for(let i=0;i<180;i++){
+
+const c=document.createElement("div");
+
+c.className="confetti";
+
+c.innerHTML=Math.random()>0.5?"💖":"❤️";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.animationDuration=(2+Math.random()*2)+"s";
+
+c.style.fontSize=(16+Math.random()*20)+"px";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),4000);
+
+}
+
+}
+
+// RUNAWAY NO BUTTON
+
+const no=document.getElementById("no");
+
+no.addEventListener("mouseover",move);
+
+no.addEventListener("click",move);
+
+function move(){
+
+const x=Math.random()*220-110;
+
+const y=Math.random()*180-90;
+
+no.style.transform=`translate(${x}px,${y}px)`;
+
+}
+
+</script>
+
+</body>
+</html>
